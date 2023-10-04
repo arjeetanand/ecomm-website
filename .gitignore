@@ -1,6 +1,5 @@
 # # Ignore .pyc files
-# *.pyc
+.pyc
+useful/
 
-# Ignore the node_modules directory
 /.env
-.env
