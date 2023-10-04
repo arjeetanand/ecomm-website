@@ -400,6 +400,7 @@ p {
   margin-top: 30px;
   margin-bottom: 30px;
   padding-right: 15%;
+  width: 80%;
 }
 
 .form2 {
@@ -409,7 +410,8 @@ p {
 .form2 .input-box2 {
   font-family: 'Monument Extended';
   height: 50px;
-  margin: 12px 0;
+  margin: 12px 12px;
+  width: 80%;
   background: #f0f1f8;
 }
 
@@ -418,12 +420,14 @@ p {
   height: 100%;
   border: none;
   outline: none;
+  width: 80%;
   font-size: 16px;
   background: #f0f1f8;
   border-radius: 6px;
   padding: 0 15px;
   resize: none;
   font-family: 'Monument Extended';
+
 }
 
 .form2 .message-box {
@@ -443,6 +447,7 @@ p {
   padding: 12px 15px;
   resize: none;
   min-height: 110px;
+  width: 80%;
   font-family: 'Monument Extended';
 }
 
@@ -526,6 +531,9 @@ p {
   }
 }
 
+.topic-text{
+  font-size: 10px;
+}
 
 .alert-container {
   margin: 15px;
@@ -534,4 +542,36 @@ p {
 .alert {
   margin: 10px 0;
   font-size: 14px;
+}
+
+
+@media (max-width: 400px) {
+  .container {
+    margin: 10px; /* Adjust margins for smaller screens */
+    margin-top: 60px; /* Increase top margin for spacing */
+  }
+
+
+
+  .text-container h2 {
+    font-size: 36px; /* Decrease font size for smaller screens */
+  }
+
+  /* Add other styles specific to 414px width here */
+  
+  /* Example: Reduce padding for smaller screens */
+  .form1 {
+    padding: 20px;
+  }
+  
+  /* Example: Decrease font size for paragraph text */
+  p {
+    font-size: 14px;
+  }
+  
+  /* Example: Adjust button styles */
+  .form1 button {
+    font-size: 16px;
+    padding: 10px 20px;
+  }
 }

@@ -149,3 +149,40 @@ margin-bottom: 20px;
 font-size: 13px;
 margin-top:20px;
 }
+
+
+@media (max-width: 414px) {
+  .container {
+    margin: 10px; /* Adjust margins for smaller screens */
+    margin-top: 60px; /* Increase top margin for spacing */
+  }
+
+  .bgimage {
+    /* Adjust background image styles for smaller screens */
+  }
+
+  .text-container {
+    /* Adjust text container styles for smaller screens */
+  }
+
+  .text-container h2 {
+    font-size: 36px; /* Decrease font size for smaller screens */
+  }
+
+  /* Add other styles specific to 414px width here */
+  
+  /* Example: Reduce padding for smaller screens */
+  .form1 {
+    padding: 20px;
+  }
+  
+  /* Example: Decrease font size for paragraph text */
+  p {
+    font-size: 14px;
+  }
+  
+  /* Example: Adjust button styles */
+  .form1 button {
+    font-size: 16px;
+    padding: 10px 20px;
+  }
