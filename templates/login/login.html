@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Design by foolishdeveloper.com -->
+    <title>Login Page</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/media/css/login.css">
+</head>
+<body>
+    {% block content %}
+    <div class="background-con">
+        <div class="illust"></div>
+        <div class="form-container">
+            <form method="post">
+                <h2>Nice to see you again!</h2>
+                {% csrf_token %}
+                <div class="alert-container">
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-info">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter Username">
+
+                <label for="password">Password</label>
+                <input type="password" id="password" name="pass" placeholder="Password">
+
+                <button type="submit">Log In</button>
+
+                <div class="line"></div>
+                <div class="signup-text">
+                    Don't have an account? <a href="{% url 'signup' %}">Get Started</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% endblock %}
+</body>
+</html>
+

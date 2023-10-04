@@ -1,0 +1,41 @@
+
+.cat-title {
+    background-color: #ffffff;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  #categories {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    font-weight: 1000;
+    background-color: #ffffff;
+  }
+  
+  .cat-box {
+    width: 200px;
+    height: 350px;
+    text-align: center;
+    padding: 0px 15px;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 13px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
+  }
+  
+  .cat-box:hover {
+    transform: rotateY(360deg);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+  }
+  
+  .cat-box img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 20px;
+    max-height: 250px;
+  }

@@ -1,0 +1,115 @@
+.navbarr {
+    width: 90%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
+    padding: 10px 5%;
+    color: #000;
+    font-family: 'Monument Extended';
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+  }
+  
+  .logo {
+    font-family: 'Monument Extended';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 22px;
+    line-height: 26px;
+  }
+  
+  .base-logo {
+    color: inherit;
+    text-decoration: none;
+  }
+  
+  .nav-links {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-family: 'Monument Extended';
+  }
+  
+  .nav-links li {
+    margin-right: 20px;
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    color: #000;
+  }
+  
+  .nav-links li a {
+    position: relative;
+  }
+  
+  .nav-links li a::after {
+    content: "";
+    position: absolute;
+    bottom: 0; /* Adjust the value as needed */
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #F35F43;
+    visibility: hidden;
+  }
+  
+  .nav-links li a:hover::after,
+  .nav-links li a:focus::after,
+  .nav-links li a:active::after,
+  .nav-links li a[aria-current='page']::after {
+    visibility: visible;
+  }
+  
+  .nav-links li a {
+    margin-top: 20px;
+  }
+  
+  .nav-links li:hover a::after,
+  .nav-links li.active a::after {
+    visibility: visible;
+    text-decoration: underline;
+  }
+  
+  
+  .navbarr.scroll {
+    background-color: #F35F43;
+  }
+  
+  .navbarr.scroll .nav-links a,
+  .navbarr.scroll .base-logo,
+  .navbarr.scroll .iconsss a i {
+    color: #fff;
+  }
+  
+  @media (max-width: 950px) {
+    .nav-links,
+    .nav-links a,
+    .nav-links li {
+      display: none;
+    }
+  
+    .iconsss {
+      margin-right: 5%;
+    }
+  }
+  
+  .iconsss {
+    display: flex;
+  }
+  
+  .iconsss a {
+    margin-left: 20px;
+    color: #000;
+  }
+  
+  .iconsss i {
+    font-size: 18px;
+  }
+  

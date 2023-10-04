@@ -1,0 +1,14 @@
+
+<div class="cat-title">SHOP BY CATEGORY</div>
+<section id="categories" class="section-p1">
+  {% for category in categories %}
+  <div class="cat-box">
+    <a href="{% url 'product_list' category=category.slug %}">
+      <img src="{{ category.image_link }}" alt="">
+      <div class="cat-name">{{ category.category_name }}</div>
+    </a>
+  </div>
+  {% endfor %}
+  </a>
+</section>
+

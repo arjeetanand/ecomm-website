@@ -1,0 +1,49 @@
+<section id="contactus"class= "container2">
+    <div class="content">
+      <div class="left-side">
+        <div class="address details">
+          <i class="fas fa-map-marker-alt"></i>
+          <div class="topic">Address</div>
+          <div class="text-one">Surkhet, NP12</div>
+          {% comment %} <div class="text-two">vadodara 390021</div> {% endcomment %}
+        </div>
+        <div class="phone details">
+          <i class="fas fa-phone-alt"></i>
+          <div class="topic">Phone</div>
+          <div class="text-one">+91 66666 99999</div>
+          {% comment %} <div class="text-two">+91 3434 5678</div> {% endcomment %}
+        </div>
+        <div class="email details">
+          <i class="fas fa-envelope"></i>
+          <div class="topic">Email</div>
+          <div class="text-one">shoplyst@gmail.com</div>
+          {% comment %} <div class="text-two">vidhipatel1405@gmail.com</div> {% endcomment %}
+        </div>
+      </div>
+      <div class="right-side">
+        <div class="topic-text">Feel free to contact us any time.</div>
+        {% comment %} <p>If you have any queries related to our service, you can send us a message from here. It's our pleasure to help you.</p> {% endcomment %}
+        <form class="form2" action="/ContactUs/" method="post">
+          {% csrf_token %} 
+          <div class="alert-container">
+              {% if messages %}
+                  {% for message in messages %}
+                      <div class="alert alert-info">
+                          {{ message }}
+                      </div>
+                  {% endfor %}
+              {% endif %}
+          <div class="input-box2">
+            <input class="input2" type="text" name="nameCon" placeholder="Enter your name" required="">
+          </div>
+          <div class="input-box2">
+            <input class="input2" type="email" name="emailCon" placeholder="Enter your email" required="">
+          </div>
+          <div class="message-box">
+            <input class="message-box-inside" type="text" name="message" placeholder="Enter your message" required="">
+          </div>
+          <button type="submit" value="Send Message" class="button2">Send Message</button>
+        </form>
+      </div>
+  </div>
+</section>

@@ -1,0 +1,23 @@
+<section id="featuredproduct" class="section-p1">
+    <div class="featur-title">FEATURED PRODUCTS</div>
+    <div class="pro-container">
+      {% for product in products %}
+      <div class="pro">
+        <a href="{% url 'get_product' product.slug %}" class="pro-link">
+          <img src="{{ product.image_link }}" alt="">
+          <div class="des">
+            <a href="{% url 'get_product' product.slug %}" class="pro-title">
+              {{ product.product_name }}</a>
+            <div class="pro-brand">{{ product.product_brand }}</div>
+            <div class="price">₹{{ product.price }}.00</div>
+          </div>        
+          <a href="{% url 'add_to_cart' uid=product.uid %}?size={{ selected_size }}" class="cart">
+            <span>Add to cart</span>
+            <i class="fas fa-shopping-cart"></i>
+          </a>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+  

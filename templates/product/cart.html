@@ -1,0 +1,190 @@
+{% extends "base/base.html"%}
+
+{% block css %}
+<link rel="stylesheet" href="/media/css/navbar.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+<style>
+    .navbarr {
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 50px;
+        padding: 20px 5%;
+        padding-top: 30px;
+        color: #000;
+        font-family: 'Monument Extended';
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        z-index: 999;
+    }
+    
+    .aside img {
+        width: 100%;
+        max-height: auto;
+    }
+</style>
+
+{% endblock %}
+
+
+{%  block start %}
+
+<section class="section-content padding-y">
+    <div class="container">
+    
+    <div class="row">
+        <main class="col-md-9">
+    <div class="card">
+    
+    <table class="table table-borderless table-shopping-cart">
+    <thead class="text-muted">
+    <tr class="small text-uppercase">
+      <th scope="col">Product</th>
+      <th scope="col" width="120">Quantity</th>
+      <th scope="col" width="120">Price</th>
+      <th scope="col" class="text-right" width="200"> </th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for cart_item in cart_items %}
+        <tr>
+            <td>
+                <figure class="itemside">
+                    <div class="aside">
+                        <img src="{{ cart_item.product.image_link }}" alt="{{ product.product_name }}" class="img-sm"></div>
+                    <figcaption class="info">
+                        <a href="{% url 'product_description' slug=cart_item.product.slug %}" class="title text-dark">{{ cart_item.product.product_name }}</a>
+                        <p class="text-muted small">
+                            {% comment %} Size: {{ cart_item.size_variant.size_variant }},
+                            Color: {{ cart_item.color_variant.color_variant }}, {% endcomment %}
+                            Brand: {{ cart_item.product.product_brand }}
+                        </p>
+                    </figcaption>
+                </figure>
+            </td>
+            <td> 
+                <select class="form-control" onchange="updateCartItem('{{ cart_item.uid }}', this.value)">
+                    <option {% if cart_item.quantity == 1 %}selected{% endif %}>1</option>
+                    <option {% if cart_item.quantity == 2 %}selected{% endif %}>2</option>	
+                    <option {% if cart_item.quantity == 3 %}selected{% endif %}>3</option>	
+                    <option {% if cart_item.quantity == 4 %}selected{% endif %}>4</option>	
+                </select>
+                
+            </td>
+            <td> 
+                <div class="price-wrap"> 
+                    <var class="price" id="price-{{ cart_item.uid }}" data-price="{{ cart_item.product.price }}">{{ cart_item.get_product_price }}</var> 
+                </div>
+            </td>
+            
+            <td class="text-right"> 
+            {% comment %} <a data-original-title="Save to Wishlist" title="" href="#" class="btn btn-light" data-toggle="tooltip"> <i class="fa fa-heart"></i></a>  {% endcomment %}
+            <a href="{% url 'remove_cart' cart_item.uid %}" class="btn btn-light">Remove</a>
+            </td>
+        </tr>
+    
+        {%endfor%}
+        </tbody>
+        </table>
+        
+        <div class="card-body border-top">
+            <button id="rzp-button1" class="btn btn-primary float-md-right"> Make Purchase </button>
+            <a href="/home" class="btn btn-light">  Continue shopping </a>
+        </div>	
+        </div> <!-- card.// -->
+        
+        <div class="alert alert-success mt-3">
+            <p class="icontext"><i class="icon text-success fa fa-truck"></i> Free Delivery within 1-2 weeks</p>
+        </div>
+        
+            </main> <!-- col.// -->
+            <aside class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                            <dl class="dlist-align">
+                              <dt>Total:</dt>
+                              <dd class="text-right  h5"><strong>{{total_price}}</strong></dd>
+                            </dl>
+                            <hr>
+    
+                            
+                    </div> <!-- card-body.// -->
+                </div>  <!-- card .// -->
+            </aside> <!-- col.// -->
+        </div>
+        
+        </div> <!-- container .//  -->
+        </section>
+    
+        <script>
+
+
+            var options = {
+                "key": "rzp_test_2kQCjb0PB5yGAp", // Enter the Key ID generated from the Dashboard
+                "amount": "{{ payment.amount }}",
+                "currency": "INR",
+                "name": "ecomm",
+                "description": "purchase Transaction",
+                "image": "https://example.com/your_logo",
+                "order_id": "{{payment.id}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+                "handler": function (response){
+                    var paymentId = response.razorpay_payment_id;
+                    var orderId = response.razorpay_order_id;
+                    var signature = response.razorpay_signature;
+
+                    var redirectURL = '/payment_success/?payment_id=' + paymentId + '&order_id=' + orderId + '&signature=' + signature;
+                    window.location.href = redirectURL;
+                    
+                    {% comment %}  window.location.href = 'http://127.0.0.1:8000/payment_success/?razorpay_payment_id=${response.razorpay_payment_id}&razorpay_order_id=${response.razorpay_order_id}&razorpay_signature=${response.razorpay_signature}'
+                    alert(response.razorpay_payment_id);
+                    alert(response.razorpay_order_id);
+                    alert(response.razorpay_signature); {% endcomment %}
+                },
+                "prefill": {
+                    "name": "Gaurav Kumar",
+                    "email": "gaurav.kumar@example.com",
+                    "contact": "9000090000"
+                },
+                "notes": {
+                    "address": "Razorpay Corporate Office"
+                },
+                "theme": {
+                    "color": "#3399cc"
+                }
+            };
+            var rzp1 = new Razorpay(options);
+            rzp1.on('payment.failed', function (response){
+                    alert(response.error.code);
+                    alert(response.error.description);
+                    alert(response.error.source);
+                    alert(response.error.step);
+                    alert(response.error.reason);
+                    alert(response.error.metadata.order_id);
+                    alert(response.error.metadata.payment_id);
+            });
+            document.getElementById('rzp-button1').onclick = function(e){
+                rzp1.open();
+                e.preventDefault();
+            }
+
+
+            function updateCartItem(cartItemId, quantity) {
+                // Send an AJAX request to update the cart item
+                // You'll need to implement this part on your server-side code
+                
+                // Update the price in the cart HTML
+                var priceElement = document.getElementById("price-" + cartItemId);
+                var price = parseFloat(priceElement.getAttribute("data-price"));
+                var updatedPrice = price * quantity;
+                priceElement.innerHTML = updatedPrice.toFixed(2);
+            }
+        </script>
+    
+    {% endblock %}
+    

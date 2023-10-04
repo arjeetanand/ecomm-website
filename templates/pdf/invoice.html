@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Payment Success</title>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+  }
+  .invoice {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  .invoice h2 {
+    margin-top: 0;
+  }
+  .invoice p {
+    margin-bottom: 10px;
+  }
+  .invoice-details {
+    margin-bottom: 20px;
+  }
+  .invoice-details p {
+    margin: 5px 0;
+  }
+  .product-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .product-item img {
+    width: 80px;
+    height: 80px;
+    margin-right: 10px;
+  }
+  .product-item .product-info {
+    flex-grow: 1;
+  }
+  .product-item .product-info p {
+    margin: 5px 0;
+  }
+</style>
+
+<div class="invoice">
+  <h2>Payment Invoice</h2>
+  <div class="invoice-details">
+    <p><strong>Order ID:</strong> {{ payment.id }}</p>
+    <p><strong>Amount:</strong> {{ payment.amount }}</p>
+    <p><strong>Currency:</strong> {{ payment.currency }}</p>
+    <p><strong>Name:</strong> {{ payment.name }}</p>
+    {% comment %} <p><strong>Description:</strong> {{ payment.description }}</p> {% endcomment %}
+  </div>
+  {% comment %} <h3>Products Purchased:</h3>
+  {% for cart_item in cart_items %}
+  <div class="product-item">
+    <img src="{{ cart_item.product.image_link }}" alt="{{ cart_item.product.name }}">
+    <div class="product-info">
+      <p><strong>Product:</strong> {{ cart_item.product.product_name }}</p>
+      <p><strong>Price:</strong> {{ cart_item.product.price }}</p>
+      <p><strong>Quantity:</strong> {{ cart_item.quantity }}</p>
+    </div>
+  </div>
+  {% endfor %} {% endcomment %}
+  <p>Thank you for your payment! Your order has been successfully processed.</p>
+</div>
+    </div>
+  </div>
+</body>
+</html>

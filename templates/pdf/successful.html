@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Payment Success</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+    }
+    .container {
+      max-width: 500px;
+      margin: 20px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #fff;
+    }
+    .message {
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    .download-link {
+      display: block;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .home-button {
+      display: block;
+      text-align: center;
+    }
+    .home-button a {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="message">
+      Payment Successful!
+    </div>
+    <div class="download-link">
+      <a href="{{ download_link }}" download>Download Invoice</a>
+    </div>
+    <div class="home-button">
+      <a href="{% url 'home' %}">Go to Home Page</a>
+    </div>
+  </div>
+</body>
+</html>

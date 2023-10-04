@@ -1,0 +1,53 @@
+{% extends "base/base.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="/media/css/testi.css">
+
+{% endblock %}
+
+  {% block start %}
+
+  <div class="container">
+    <div class="bgimage">
+      <div class="text-container">
+        <h2>Find the best deals from hundreds of stores in one place.</h2>
+      </div>
+      <form class="form1" method="GET" action="{% url 'search_results' %}">
+        <div class="home-search">
+          <input type="search" name="query" required>
+          <button class="fa fa-search"></button>
+          <a href="javascript:void(0)" id="clear-btn">Clear</a>
+        </div>
+      </form>
+      
+      {% comment %} <div class="image-container">
+      </div> {% endcomment %}
+  </div>
+</div>
+
+
+{% include 'home/categories.html' %}
+
+
+
+<section id="websites">
+  <a href="#"><img class="full-width-image" src="/media/images/websites.png" alt=""></a>
+</section>
+
+{% include 'home/featuredproduct.html' %}
+
+
+{% include 'home/testimonials.html' %}
+
+
+{% include 'home/footer.html' %}
+
+
+
+
+
+<script src="/media/js/js.js"></script>
+
+  {% endblock %}
+

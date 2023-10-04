@@ -1,0 +1,45 @@
+{% extends 'base/base.html' %}
+
+{% block css %}
+.space {
+  margin-top: 200px;
+}
+{% endblock %}
+
+{% block content %}
+<div class="space"></div>
+<section id="featuredproduct" class="section-p1">
+  <div class="featur-title">Search Results</div>
+  <div class="pro-container">
+    {% for product in results %}
+    {% comment %} {% load humanize %} {% endcomment %}
+    <div class="pro">
+      <a href="{{ product.product_url }}" class="pro-link">
+        <img src="{{ product.image_link }}" alt="{{ product.product_name }}">
+        <div class="des">
+          <div class="pro-brand">{{ product.product_brand | truncatewords:2 }}</div>
+          <a href="{{ product.product_url }}" class="pro-title">
+            {{ product.product_name | truncatewords:12 }}</a>
+            {% comment %} <p>Description: <br>{{ product.product_description }}</p> {% endcomment %}
+          <div class="price">{{ product.price }}.00</div>
+          {% if product.source == 'Flipkart' %}
+            <div class="source-tag">From Flipkart</div>
+          {% comment %} {% elif product.source == 'Amazon' %}
+            <div class="source-tag">From Amazon</div>
+          {% else %}
+            <div class="source-tag">Unknown Source</div> {% endcomment %}
+          {% endif %}
+        </div>
+        <a href="#" class="cart">
+          <span>Add to cart</span>
+          <i class="fas fa-shopping-cart"></i>
+        </a>
+      </a>
+    </div>
+    {% empty %}
+    <p>No results found.</p>
+    {% endfor %}
+  </div>
+</section>
+
+{% endblock %}
