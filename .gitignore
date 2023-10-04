@@ -1,1 +1,6 @@
-config.json/
+# Ignore .pyc files
+*.pyc
+
+# Ignore the node_modules directory
+
+/config.json
