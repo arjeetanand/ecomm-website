@@ -133,15 +133,18 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # with open('config.json') as config_file:
 #     config = json.load(config_file)
 
+from decouple import AutoConfig
 
-# from decouple import config
+# Create a configuration object with AutoConfig
+config = AutoConfig()
+
+
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
-
-KEY = os.getenv('KEY')
-SECRET = os.getenv('SECRET')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+KEY = config('KEY')
+SECRET = config('SECRET')
