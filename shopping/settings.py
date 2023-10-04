@@ -129,14 +129,9 @@ MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# import json
-# with open('config.json') as config_file:
-#     config = json.load(config_file)
-
-from decouple import AutoConfig
-
-# Create a configuration object with AutoConfig
-config = AutoConfig()
+import json
+with open('config.json') as config_file:
+    config = json.load(config_file)
 
 
 
