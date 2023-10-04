@@ -3,3 +3,4 @@
 # Ignore .pyc files
 .pyc
 .env
+config.json
