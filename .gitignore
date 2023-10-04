@@ -1,5 +1,5 @@
-# # Ignore .pyc files
-# *.pyc
+# Ignore .pyc files
+*.pyc
 
-# # Ignore the node_modules directory
-# /.env
+# Ignore the node_modules directory
+/.env
