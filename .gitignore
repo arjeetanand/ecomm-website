@@ -1,4 +1,6 @@
-# # Ignore .pyc files
+!.gitignore
+
+# Ignore .pyc files
 .pyc
 useful/
 
